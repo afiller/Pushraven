@@ -2,7 +2,6 @@ package us.raudi.pushraven;
 
 import java.util.Map;
 
-import us.raudi.pushraven.Target;
 import us.raudi.pushraven.Target.TargetType;
 import us.raudi.pushraven.configs.AndroidConfig;
 import us.raudi.pushraven.configs.ApnsConfig;
