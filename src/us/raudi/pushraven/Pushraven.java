@@ -26,8 +26,8 @@ public class Pushraven {
 	private static String PROJECT_ID;
 	public static boolean validate_only = false;
 
-	
-	
+
+
 	/**
 	 * @deprecated  As of release 1.0.2, replaced by setCredential()
 	 * setAccountFile will be phased out in future releases
@@ -40,18 +40,18 @@ public class Pushraven {
 			e.printStackTrace();
 		}
 	}
-	
-	
+
+
 	/**
 	 * Sets the google credentials from a JSON account file.
 	 * @param file Json file downloaded from FirebaseConsole -&gt; Settings -&gt; Service Accounts
 	 * @param file JSON file containing the account credentials.
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	public static void setCredential(File file) throws IOException {
 		Pushraven.setCredential( GoogleCredential.fromStream(new FileInputStream(file)) );
 	}
-	
+
 	/**
 	 * Setter for the GoogleCredentials.
 	 * @param credential GoogleCredential authentication object
@@ -59,17 +59,17 @@ public class Pushraven {
 	public static void setCredential(GoogleCredential credential) {
 		Pushraven.CREDENTIAL = credential;
 	}
-	
+
 	/**
-	 * Define the ID for the project. 
+	 * Define the ID for the project.
 	 * Can be found in the settings of the Firebase Console
 	 * @param id
 	 */
 	public static void setProjectId(String id) {
 		PROJECT_ID = id;
 	}
-	
-	
+
+
 	/**
 	 * Flag for testing the request without actually delivering the message.
 	 * @param validate_only If set to true the message wont be delivered.
@@ -90,7 +90,7 @@ public class Pushraven {
 	public static FcmResponse push(Message m) {
 		// check ProjectID and Account-File have been given and that File exists
 		if(!checkFileAndId()) return null;
-		
+
 		HttpsURLConnection con = null;
 		try {
 			String url = API_URL+PROJECT_ID+"/messages:send";
@@ -102,17 +102,17 @@ public class Pushraven {
 			con.setRequestMethod("POST");
 			con.setRequestProperty("Authorization", "Bearer " + getAccessToken());
 			con.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
-			
+
 
 			con.setDoOutput(true);
 			DataOutputStream wr = new DataOutputStream(con.getOutputStream());
 			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(wr, "UTF-8"));
-			
+
 			// create request object (https://firebase.google.com/docs/reference/fcm/rest/v1/projects.messages/send)
 			JSONObject obj = new JSONObject();
 			obj.put("message", m.toJson());
 			obj.put("validate_only", validate_only);
-			
+
 			writer.write(obj.toString());
 
 			// close output stream
@@ -130,7 +130,7 @@ public class Pushraven {
 	}
 
 	/*
-	 * Performs check prior to sending the message. 
+	 * Performs check prior to sending the message.
 	 * If returns false the Message wont be sent
 	 */
 	private static boolean checkFileAndId() {
@@ -141,14 +141,14 @@ public class Pushraven {
 		if(CREDENTIAL == null) {
 			System.err.println("Error: No credentials have been provided for Pushraven.");
 			return false;
-		}		
+		}
 		return true;
 	}
 
 
 	private static String getAccessToken() throws IOException {
 		String[] SCOPES = {"https://www.googleapis.com/auth/firebase.messaging"};
-		
+
 		GoogleCredential googleCredential = CREDENTIAL.createScoped(Arrays.asList(SCOPES));
 		googleCredential.refreshToken();
 		return googleCredential.getAccessToken();

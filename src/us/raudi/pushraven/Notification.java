@@ -15,7 +15,7 @@ public class Notification extends Payload {
 	public Notification title(String title) {
 		return (Notification) addAttribute("title",title);
 	}
-	
+
 	/**
 	 * The notification's body text.
 	 * @param body (see: https://firebase.google.com/docs/reference/fcm/rest/v1/projects.messages)

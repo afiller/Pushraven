@@ -11,7 +11,7 @@ import us.raudi.pushraven.Notification;
  */
 public class AndroidNotification extends Notification {
 	/**
-	 * The notification's icon. Sets the notification icon to myicon for drawable resource myicon. 
+	 * The notification's icon. Sets the notification icon to myicon for drawable resource myicon.
 	 * If you don't send this key in the request, FCM displays the launcher icon specified in your app manifest.
 	 * @param myicon (see: https://firebase.google.com/docs/reference/fcm/rest/v1/projects.messages)
 	 * @return Returns the modified payload
@@ -19,7 +19,7 @@ public class AndroidNotification extends Notification {
 	public AndroidNotification icon(String myicon) {
 		return (AndroidNotification) addAttribute("icon", myicon);
 	}
-	
+
 	/**
 	 * The notification's icon color, expressed in #rrggbb format.
 	 * @param rgb color (hex code) as a string. Example: "#ff01a0"
@@ -28,10 +28,10 @@ public class AndroidNotification extends Notification {
 	public AndroidNotification color(String rgb) {
 		return (AndroidNotification) addAttribute("color", rgb);
 	}
-	
+
 	/**
-	 * The sound to play when the device receives the notification. 
-	 * Supports "default" or the filename of a sound resource bundled in the app. 
+	 * The sound to play when the device receives the notification.
+	 * Supports "default" or the filename of a sound resource bundled in the app.
 	 * Sound files must reside in /res/raw/.
 	 * @param mysound (see: https://firebase.google.com/docs/reference/fcm/rest/v1/projects.messages)
 	 * @return Returns the modified payload
@@ -39,9 +39,9 @@ public class AndroidNotification extends Notification {
 	public AndroidNotification sound(String mysound) {
 		return (AndroidNotification) addAttribute("sound", mysound);
 	}
-	
+
 	/**
-	 * Identifier used to replace existing notifications in the notification drawer. If not specified, each request creates a new notification. 
+	 * Identifier used to replace existing notifications in the notification drawer. If not specified, each request creates a new notification.
 	 * If specified and a notification with the same tag is already being shown, the new notification replaces the existing one in the notification drawer.
 	 * @param mytag (see: https://firebase.google.com/docs/reference/fcm/rest/v1/projects.messages)
 	 * @return Returns the modified payload
@@ -49,9 +49,9 @@ public class AndroidNotification extends Notification {
 	public AndroidNotification tag(String mytag) {
 		return (AndroidNotification) addAttribute("tag", mytag);
 	}
-	
+
 	/**
-	 * The action associated with a user click on the notification. 
+	 * The action associated with a user click on the notification.
 	 * If specified, an activity with a matching intent filter is launched when a user clicks on the notification.
 	 * @param action (see: https://firebase.google.com/docs/reference/fcm/rest/v1/projects.messages)
 	 * @return Returns the modified payload
@@ -59,9 +59,9 @@ public class AndroidNotification extends Notification {
 	public AndroidNotification clickAction(String action) {
 		return (AndroidNotification) addAttribute("clickAction", action);
 	}
-	
+
 	/**
-	 * The key to the body string in the app's string resources to use to localize the body text to the user's current localization. 
+	 * The key to the body string in the app's string resources to use to localize the body text to the user's current localization.
 	 * https://developer.android.com/guide/topics/resources/string-resource.html
 	 * @param key (see: https://firebase.google.com/docs/reference/fcm/rest/v1/projects.messages)
 	 * @return Returns the modified payload
@@ -69,7 +69,7 @@ public class AndroidNotification extends Notification {
 	public AndroidNotification body_loc_key(String key) {
 		return (AndroidNotification) addAttribute("body_loc_key", key);
 	}
-	
+
 	/**
 	 * Variable string values to be used in place of the format specifiers in body_loc_key to use to localize the body text to the user's current localization.
 	 * https://developer.android.com/guide/topics/resources/string-resource.html#FormattingAndStyling
@@ -79,9 +79,9 @@ public class AndroidNotification extends Notification {
 	public AndroidNotification body_loc_args(Collection<String> args){
 		return (AndroidNotification) addAttributeArray("body_loc_args", args);
 	}
-	
+
 	/**
-	 * The key to the title string in the app's string resources to use to localize the title text to the user's current localization. 
+	 * The key to the title string in the app's string resources to use to localize the title text to the user's current localization.
 	 * https://developer.android.com/guide/topics/resources/string-resource.html
 	 * @param key (see: https://firebase.google.com/docs/reference/fcm/rest/v1/projects.messages)
 	 * @return Returns the modified payload
@@ -89,7 +89,7 @@ public class AndroidNotification extends Notification {
 	public AndroidNotification title_loc_key(String key) {
 		return (AndroidNotification) addAttribute("title_loc_key", key);
 	}
-	
+
 	/**
 	 * Variable string values to be used in place of the format specifiers in title_loc_key to use to localize the title text to the user's current localization.
 	 * https://developer.android.com/guide/topics/resources/string-resource.html#FormattingAndStyling
@@ -99,7 +99,7 @@ public class AndroidNotification extends Notification {
 	public AndroidNotification title_loc_args(Collection<String> args){
 		return (AndroidNotification) addAttributeArray("title_loc_args", args);
 	}
-	
+
 	@Override
 	public AndroidNotification title(String title) {
 		return (AndroidNotification) super.title(title);

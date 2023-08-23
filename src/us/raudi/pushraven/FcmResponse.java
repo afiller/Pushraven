@@ -37,32 +37,32 @@ public class FcmResponse {
 	public String getMessage() {
 		return message;
 	}
-	
-	
+
+
 
 
 	public String toString() {
 		return String.format("Response Code: %d \nMessage: '%s'", getResponseCode(), getMessage());
 	}
-	
-	
-	
+
+
+
 
 
 	private void readResponse(HttpsURLConnection con) {
 		InputStream errorIs = con.getErrorStream();
 		InputStream successIs = null;
-		
+
 		try {
 			successIs = con.getInputStream();
 		} catch (IOException e1) {
 			// Connection failed
 			// Error message will be read
 		}
-		
+
 		try {
 			code = con.getResponseCode();
-			
+
 			if(successIs != null) {
 				message = readAllFromInputStream(successIs);
 			}
@@ -74,9 +74,9 @@ public class FcmResponse {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
+
+
+
 	private String readAllFromInputStream(InputStream in) {
 		if (in == null)
 			return "";
@@ -98,31 +98,31 @@ public class FcmResponse {
 		}
 		return total.toString();
 	}
-	
-	
-	
+
+
+
 
 	// TODO: Delete from next release
-	
+
 	@Deprecated
 	/**
 	 * Deprecated, please use getMessage() instead
-	 * 
+	 *
 	 * @return always null
 	 */
 	public String getErrorMessage() {
 		return null;
 	}
-	
+
 	@Deprecated
 	/**
 	 * Deprecated, please use getMessage() instead
-	 * 
+	 *
 	 * @return always null
 	 */
 	public String getSuccessResponseMessage() {
 		return null;
 	}
-	
+
 
 }

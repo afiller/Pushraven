@@ -20,11 +20,11 @@ public class ApnsConfig extends Payload {
 	public ApnsConfig headers(Map<String, String> values) {
 		return (ApnsConfig) addAttributeMap("headers", values);
 	}
-	
+
 	/**
-	 * APNs payload as a JSON object, including both aps dictionary and custom payload. 
+	 * APNs payload as a JSON object, including both aps dictionary and custom payload.
 	 * If present, it overrides google.firebase.fcm.v1.Notification.title and google.firebase.fcm.v1.Notification.body
-	 * 
+	 *
 	 * You must implement the payload yourself using the Payload class and the documentation from apple.
 	 * us.raudi.pushraven.Payload.java
 	 * https://developer.apple.com/library/content/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/PayloadKeyReference.html#//apple_ref/doc/uid/TP40008194-CH17-SW1

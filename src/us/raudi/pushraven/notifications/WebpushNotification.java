@@ -17,8 +17,8 @@ public class WebpushNotification extends Notification {
 	public WebpushNotification icon(String url) {
 		return (WebpushNotification) addAttribute("icon", url);
 	}
-	
-	
+
+
 	@Override
 	public WebpushNotification title(String title) {
 		return (WebpushNotification) super.title(title);

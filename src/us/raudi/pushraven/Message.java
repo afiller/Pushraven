@@ -22,8 +22,8 @@ public class Message extends Payload {
 	public Message name(String name) {
 		return (Message) addAttribute("name", name);
 	}
-	
-	
+
+
 	/**
 	 * Input only. Arbitrary key/value payload.
 	 * An object containing a list of "key": value pairs. Example: { "name": "wrench", "mass": "1.3kg", "count": "3" }.
@@ -33,8 +33,8 @@ public class Message extends Payload {
 	public Message data(Map<String, String> data) {
 		return (Message) addAttributeMap("data", data);
 	}
-	
-	
+
+
 	/**
 	 * Input only. Basic notification template to use across all platforms.
 	 * https://firebase.google.com/docs/reference/fcm/rest/v1/projects.messages#notification
@@ -44,8 +44,8 @@ public class Message extends Payload {
 	public Message notification(Notification not) {
 		return (Message) addAttributePayload("notification", not);
 	}
-	
-	
+
+
 	/**
 	 * Input only. Android specific options for messages sent through FCM connection server.
 	 * https://firebase.google.com/docs/reference/fcm/rest/v1/projects.messages#androidconfig
@@ -56,7 +56,7 @@ public class Message extends Payload {
 		return (Message) addAttributePayload("android", config);
 	}
 
-	
+
 	/**
 	 * Input only. Webpush protocol options.
 	 * https://firebase.google.com/docs/reference/fcm/rest/v1/projects.messages#webpushconfig
@@ -66,8 +66,8 @@ public class Message extends Payload {
 	public Message webpush(WebpushConfig config) {
 		return (Message) addAttributePayload("webpush", config);
 	}
-	
-	
+
+
 	/**
 	 * Input only. Apple Push Notification Service specific options.
 	 * https://firebase.google.com/docs/reference/fcm/rest/v1/projects.messages#apnsconfig
@@ -77,7 +77,7 @@ public class Message extends Payload {
 	public Message apns(ApnsConfig config) {
 		return (Message) addAttributePayload("apns", config);
 	}
-	
+
 	/**
 	 * Target to send a message to. target can be only one of the following: TOKEN, TOPIC, CONDITION.
 	 * Setting a new target will remove all previously set targets.
@@ -88,7 +88,7 @@ public class Message extends Payload {
 		setTarget(target);
 		return this;
 	}
-	
+
 	/**
 	 * Registration token to send a message to.
 	 * Note: setting this target will remove all previous targets (token, topic an condition).
@@ -98,7 +98,7 @@ public class Message extends Payload {
 	public Message token(String tok) {
 		return target(new Target(TargetType.TOKEN, tok));
 	}
-	
+
 	/**
 	 * Topic name to send a message to, e.g. "weather". Note: "/topics/" prefix should not be provided.
 	 * Note: setting this target will remove all previous targets (token, topic an condition).
@@ -108,7 +108,7 @@ public class Message extends Payload {
 	public Message topic(String top) {
 		return target(new Target(TargetType.TOPIC, top));
 	}
-	
+
 	/**
 	 * Condition to send a message to, e.g. "'foo' in topics &amp;&amp; 'bar' in topics".
 	 * Note: setting this target will remove all previous targets (token, topic an condition).
@@ -118,7 +118,7 @@ public class Message extends Payload {
 	public Message condition(String cond) {
 		return target(new Target(TargetType.CONDITION, cond));
 	}
-	
+
 
 	/*
 	 * Private implementation for setting a target.
@@ -128,7 +128,7 @@ public class Message extends Payload {
 		removeAttribute("token");
 		removeAttribute("topic");
 		removeAttribute("condition");
-		
+
 		addAttribute(target.getType(), target.getTarget());
 	}
 }

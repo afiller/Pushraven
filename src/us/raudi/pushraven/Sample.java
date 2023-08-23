@@ -17,18 +17,18 @@ public class Sample {
 		// 2. Json file downloaded from the Firebase console, containing details for authentication to google
 		// 3. Your project ID. Can also be found in the Firebase console.
 		String CLIENT_ID = "cA7gOth0X1Q:APA91bERuP4lNAw_oOe9huC27Eao6TDFLEgBmDGnln0IpJDgXyBttxCMV6u1VtegzbfFAI4b3TwAWOceg2oB2A2UuVzpYcxyrZHEVuEiZBF3dSnsWnZds-pdwMxefQDojBj6JvIqQEyd";
-		
+
 		File serviceAccount = new File("service_account.json");
 		GoogleCredential credential = GoogleCredential.fromStream(new FileInputStream(serviceAccount) );
-		Pushraven.setCredential(credential);		
+		Pushraven.setCredential(credential);
 		Pushraven.setProjectId("fcmtest-f57d4");
-		
+
 		// Create Notification object
 		Notification not = new Notification()
 				.title("Hello World")
 				.body("This is a notification");
-		
-		
+
+
 		// Create OPTIONAL target configuration (in this case Android)
 		AndroidConfig droidCfg = new AndroidConfig()
 				.priority(Priority.HIGH)
@@ -37,19 +37,19 @@ public class Sample {
 							.color("#ff0000")
 						)
 				.priority(Priority.HIGH);
-			
+
 		// Create Message and add Notification and Configurations to it
 		Message raven = new Message()
 				.name("id")
 				.notification(not)
 				.token(CLIENT_ID)
 				.android(droidCfg);
-		
-		
+
+
 		// Push the Message to FCM
 		FcmResponse response = Pushraven.push(raven);
-		
-		
+
+
 		// Print API server response
 		System.out.println(response);
 	}

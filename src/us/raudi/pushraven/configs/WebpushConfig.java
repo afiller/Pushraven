@@ -31,8 +31,8 @@ public class WebpushConfig extends Payload {
 	public WebpushConfig data(Map<String, String> data) {
 		return (WebpushConfig) addAttributeMap("data", data);
 	}
-	
-	
+
+
 	/**
 	 * A web notification to send.
 	 * https://firebase.google.com/docs/reference/fcm/rest/v1/projects.messages#WebpushNotification
